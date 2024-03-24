@@ -1,0 +1,11 @@
+{
+  "name": "filerenamer",
+  "version": "1.0.0",
+  "description": "File renamer",
+  "main": "file renamer.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bas Spruit",
+  "license": "ISC"
+}
