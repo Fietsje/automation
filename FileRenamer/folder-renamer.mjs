@@ -26,7 +26,7 @@ function main() {
             const filePath = path.resolve(folder, file)
             return { source: file, destination: file, stats: fs.lstatSync(filePath) };
         })
-        .filter(file => file.stats.isFile())
+        .filter(file => file.stats.isDirectory())
         .sort();
 
     files.forEach(info => { renameFile(info, replacements); });
@@ -53,12 +53,7 @@ function main() {
 }
 
 function renameFile(info, replacements) {
-    const extensionIndex = info.destination.lastIndexOf('.');
-    info.destination = info.destination.substring(0, extensionIndex);
-    info.extension = info.source.substring(extensionIndex);
-
     replacements.forEach(r => { applyReplacement(info, r); });
-    info.destination += info.extension;
 }
 
 function applyReplacement(info, replacement) {
