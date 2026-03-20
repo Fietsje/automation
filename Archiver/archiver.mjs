@@ -42,9 +42,9 @@ import * as path from 'path';
         .sort();
 
     for (let index = 0; index < directories.length; index++) {
-        const foldername = directories[index].toLowerCase().replace(' ', '_');
+        const foldername = directories[index];
 
-        const selectedFiles = files.filter(f => f.source.includes('by_' + foldername));
+        const selectedFiles = files.filter(f => f.source.includes('by_' + foldername.toLowerCase().replace(' ', '_')));
         if (selectedFiles.length > 0) {
             console.log('dst', foldername, selectedFiles.length);
 
@@ -55,7 +55,7 @@ import * as path from 'path';
                 console.log(fileinfo.fullPath, '->', fileinfo.destination);
                 if (!dryRun) {
                     if (fs.existsSync(fileinfo.destination)) {
-                        fs.rename(fileinfo.fullPath, sourcefolder + '\\temp' + fileinfo.source, err => {/** Ignore error */ });
+                        fs.rename(fileinfo.fullPath, sourcefolder + '\\temp\\' + fileinfo.source, err => {/** Ignore error */ });
                     }
                     fs.rename(fileinfo.fullPath, fileinfo.destination, err => { /** Ignore error */ });
                 }
